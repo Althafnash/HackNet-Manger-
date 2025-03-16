@@ -16,6 +16,7 @@ def NetInterfaces(root):
     NetInterfaces_Window.geometry("500x400")    
     NetInterfaces_scroll = scrolledtext.ScrolledText(NetInterfaces_Window, wrap=tk.WORD, undo=True, bg=text_bg_color)
     NetInterfaces_scroll.grid(row=3, column=2, padx=10, pady=10)
+    NetInterfaces_scroll.config(fg=text_fg_color)
 
     for interface, address in interfaces.items():
         NetInterfaces_scroll.config(state=tk.NORMAL) 
@@ -36,6 +37,7 @@ def Netstats(root):
     net_statWindow.geometry("500x400")
     net_statWindow_scroll = scrolledtext.ScrolledText(net_statWindow, wrap=tk.WORD, undo=True, bg=text_bg_color)
     net_statWindow_scroll.grid(row=3, column=2, padx=10, pady=10)
+    net_statWindow_scroll.config(fg=text_fg_color)
 
     net_statWindow_scroll.config(state=tk.NORMAL)
     net_statWindow_scroll.insert(tk.END, f"Bytes Sent : {net_io.bytes_sent}\n")
@@ -58,6 +60,7 @@ def AtvConInet(root):
     AtvConInet_Window.geometry("500x400")
     AtvConInet_scroll = scrolledtext.ScrolledText(AtvConInet_Window, wrap=tk.WORD, undo=True, bg=text_bg_color)
     AtvConInet_scroll.grid(row=3, column=2, padx=10, pady=10)
+    AtvConInet_scroll.config(fg=text_fg_color)
     for con in connections:
         AtvConInet_scroll.config(state=tk.NORMAL)
         AtvConInet_scroll.insert(tk.END, f"Proto: {con.type} | Local Address {con.laddr} | Remote Address {con.raddr} | status {con.status}\n")
@@ -72,6 +75,7 @@ def AtvContcp(root):
     AtvContcp_Window.geometry("500x400")
     AtvContcp_scroll = scrolledtext.ScrolledText(AtvContcp_Window, wrap=tk.WORD, undo=True, bg=text_bg_color)
     AtvContcp_scroll.grid(row=3, column=2, padx=10, pady=10)
+    AtvContcp_scroll.config(fg=text_fg_color)
     for con in connections:
         AtvContcp_scroll.config(state=tk.NORMAL)
         AtvContcp_scroll.insert(tk.END, f"Proto: {con.type} | Local Address {con.laddr} | Remote Address {con.raddr} | status {con.status}\n")
@@ -86,6 +90,7 @@ def AtvConudp():
     Connection_Window.geometry("500x400")
     Connection_scroll = scrolledtext.ScrolledText(Connection_Window, wrap=tk.WORD, undo=True, bg=text_bg_color)
     Connection_scroll.grid(row=3, column=2, padx=10, pady=10)
+    Connection_scroll.config(fg=text_fg_color)
     for con in connections:
         Connection_scroll.config(state=tk.NORMAL)
         Connection_scroll.insert(tk.END, f"Proto: {con.type} | Local Address {con.laddr} | Remote Address {con.raddr} | status {con.status}\n")
@@ -123,21 +128,27 @@ main_window.grid(row=5, column=3, columnspan=2, pady=10, sticky="ew")
 Scanner = scrolledtext.ScrolledText(main_window, wrap=tk.WORD, undo=True, bg=text_bg_color)
 Scanner.grid(row=1, column=2, padx=10, pady=10)
 Scanner.config(state=tk.DISABLED)
+Scanner.config(fg=text_fg_color)
 
 NetInterfaces_button = tk.Button(main_window, text="Network Interfaces",background=bg_color, command=lambda: NetInterfaces(root))
 NetInterfaces_button.grid(row=2, column=2, padx=10, pady=10)
+NetInterfaces_button.config(fg=text_fg_color)
 
 Netstats_button = tk.Button(main_window, text="Network Stats",background=bg_color, command=lambda: Netstats(root) )
 Netstats_button.grid(row=3, column=2, padx=10, pady=10)
+Netstats_button.config(fg=text_fg_color)
 
 AtvConInet_button = tk.Button(main_window, text="Active Internet Connections",background=bg_color, command=lambda: AtvConInet(root))            
 AtvConInet_button.grid(row=4, column=2, padx=10, pady=10)
+AtvConInet_button.config(fg=text_fg_color)
 
 AtvContcp_button = tk.Button(main_window, text="Active TCP Connections",background=bg_color, command=lambda: AtvContcp(root))
 AtvContcp_button.grid(row=5, column=2, padx=10, pady=10)
+AtvContcp_button.config(fg=text_fg_color)
 
 AtvConudp_button = tk.Button(main_window, text="Active UDP Connections",background=bg_color, command=AtvConudp)
 AtvConudp_button.grid(row=6, column=2, padx=10, pady=10)
+AtvConudp_button.config(fg=text_fg_color)
 
 monitor_thread = threading.Thread(target=NetMonitor, daemon=True)
 monitor_thread.start()
